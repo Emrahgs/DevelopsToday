@@ -86,20 +86,21 @@ WSGI_APPLICATION = "DevelopsToday.wsgi.application"
 if not DEBUG:
     DATABASES = {
         'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+        
+    }
+
+else:
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'USER': os.environ.get('POSTGRES_USER'),
             'NAME': os.environ.get('POSTGRES_DB'),
             'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
             'HOST': os.environ.get('POSTGRES_HOST'),
             'PORT': os.environ.get('POSTGRES_PORT'),
-        }
-    }
-
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
         }
     }
 
