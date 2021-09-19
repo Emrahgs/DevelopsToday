@@ -1,6 +1,10 @@
+import json
+from django.db.utils import IntegrityError
 from rest_framework.response import Response
 from rest_framework import status
-from post.models import *
+from .models import Post, Comment
+from rest_framework.exceptions import NotFound
+from rest_framework.views import APIView
 from post.serializers import (
     PostSerializer,
     PostCreateSerializer,
@@ -8,13 +12,6 @@ from post.serializers import (
     PostCommentCreateSerializer,
     UpvoteSerializer,
 )
-
-import json
-
-from rest_framework.exceptions import NotFound
-
-from rest_framework.views import APIView
-from datetime import timedelta, datetime
 
 
 # --------------------- Post -----------------------------------

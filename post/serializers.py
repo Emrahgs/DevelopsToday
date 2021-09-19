@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from post.models import *
+from .models import Post, Comment, Upvote
 from account.serializers import UserSerializer
 from django.shortcuts import get_object_or_404
 from django.db import IntegrityError

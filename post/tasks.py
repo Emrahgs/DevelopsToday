@@ -1,6 +1,5 @@
 from celery import shared_task
 from .models import Post
-from datetime import timedelta, datetime
 
 
 @shared_task
