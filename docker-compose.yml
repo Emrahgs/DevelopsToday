@@ -1,0 +1,51 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./pgdata/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    restart: always
+
+  # web:
+  #   build: .
+  #   command: ["uwsgi", "--ini", "/code/uwsgi.ini"]
+  #   volumes:
+  #     - .:/code
+  #     - ./static/:/code/static
+  #     - ./media/:/code/media
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - "postgres"
+  #   env_file: ./.env
+  
+  celery:
+    build:
+      context: .
+      dockerfile: celery.dockerfile
+    volumes:
+      - .:/code
+    command: celery -A DevelopsToday worker -l info
+    links:
+      - redis
+      - postgres
+    depends_on:
+      - "redis"
+      - "postgres"
+    env_file: ./.env
+
+# networks:
+#   default:
+#     external:
+#       name: nginx-proxy
