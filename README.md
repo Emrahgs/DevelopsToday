@@ -13,7 +13,3 @@ To run the application:
 
 
 Postman link: https://www.getpostman.com/collections/890f4755b1a11fb2ccf1
-
-Admin page: 
-Username: admin@gmail.com
-Password: 1
