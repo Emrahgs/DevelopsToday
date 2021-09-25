@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import django_heroku
+import dj_database_url
+from decouple import config
+
+
 from pathlib import Path
 import os
 from celery.schedules import crontab
@@ -27,7 +32,7 @@ SECRET_KEY = "django-insecure-j0wm)7fxiwzz&$bfj#7q=c)plk_6ojs_55czezafaqx_&zg($6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['develops-today-app.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['develops-today-app.herokuapp.com']
 
 
 # Application definition
@@ -88,7 +93,7 @@ DATABASES = {
         'USER': os.environ.get('POSTGRES_USER', 'Develops_user'),
         'NAME': os.environ.get('POSTGRES_DB', 'DevelopsToday'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '12345'),
-        'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': os.environ.get('POSTGRES_PORT', 5432),
     }
 }
@@ -155,3 +160,5 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(hour="15", minute="55"),
     }
 }
+
+django_heroku.settings(locals())
