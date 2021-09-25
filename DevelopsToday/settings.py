@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-j0wm)7fxiwzz&$bfj#7q=c)plk_6ojs_55czezafaqx_&zg($6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['develops-today-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'USER': os.environ.get('POSTGRES_USER', 'Develops_user'),
         'NAME': os.environ.get('POSTGRES_DB', 'DevelopsToday'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '12345'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
         'PORT': os.environ.get('POSTGRES_PORT', 5432),
     }
 }
