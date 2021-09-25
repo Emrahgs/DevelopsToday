@@ -17,7 +17,7 @@ from decouple import config
 from pathlib import Path
 import os
 from celery.schedules import crontab
-import django_heroku
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "django_celery_beat",
-    "django-heroku"
     # apps
     "account",
     "post",
@@ -162,4 +161,4 @@ CELERY_BEAT_SCHEDULE = {
     }
 }
 
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
